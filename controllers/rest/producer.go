@@ -27,7 +27,7 @@ type ProducerController struct {
 // @router /producer [post]
 func (this *ProducerController) ProducerPost() {
 
-	requestBody, params, topic := this.checkPostParameter()
+	requestBody, params, topic := this.checkProducerPostParameter()
 
 	// push message
 	err := util.NsqPublish(topic, requestBody)
@@ -39,7 +39,7 @@ func (this *ProducerController) ProducerPost() {
 }
 
 /* 生产者 入参校验 */
-func (this *ProducerController) checkPostParameter() ([]byte, models.ProducerPostIo, string) {
+func (this *ProducerController) checkProducerPostParameter() ([]byte, models.ProducerPostIo, string) {
 	var params models.ProducerPostIo
 	requestBody, err := this.GetPostJson(&params)
 
